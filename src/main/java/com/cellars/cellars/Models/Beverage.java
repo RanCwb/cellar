@@ -9,8 +9,6 @@ import java.io.Serializable;
 @Table(name = "beverages")
 public class Beverage implements Serializable {
 
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -20,9 +18,40 @@ public class Beverage implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "description", nullable = false, length = 500)
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category; // Certifique-se de que esta importação está correta
+    private Category category;
+
+    public Beverage() {
+    }
+
+    public Beverage(String name, String description, Category category, Long id) {
+
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.id = id;
+    }
+
+    public String toString() {
+        return "Beverage{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;

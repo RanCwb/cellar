@@ -1,11 +1,12 @@
 package com.cellars.cellars.Controllers;
 
-
 import com.cellars.cellars.Models.Beverage;
 import com.cellars.cellars.Repository.BeverageRepository;
 import com.cellars.cellars.Services.BeverageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,17 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/beverages")
 public class BeverageController {
 
-        @Autowired
-        private BeverageRepository beverageRepository;
+    @Autowired
+    private BeverageRepository beverageRepository;
 
-        @Autowired
-        private BeverageService beverageService;
+    @Autowired
+    private BeverageService beverageService;
 
+    @PostMapping("/create")
+    public ResponseEntity<?> createBeverage(@RequestBody Beverage beverage) {
 
-        @PostMapping("/create")
-        public void createBeverage(Beverage beverage) {
-            beverageService.createBeverage(beverage);
-        }
-
+        return beverageService.createDrink(beverage);
+    }
 
 }

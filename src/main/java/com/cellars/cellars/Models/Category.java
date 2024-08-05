@@ -10,8 +10,6 @@ import java.util.List;
 @Table(name = "categories")
 public class Category implements Serializable {
 
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -23,6 +21,15 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Beverage> beverages;
+
+    public Category() {
+    }
+
+    public Category(String name, List<Beverage> beverages, Long id) {
+        this.name = name;
+        this.beverages = beverages;
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

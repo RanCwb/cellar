@@ -22,13 +22,13 @@ public class CategoryService {
                     .badRequest()
                     .body(new ErrorResponse("Category name cannot be null or empty"));
         }
-        Category  savedCategory  = categoryRepository.save(category);
+        Category savedCategory = categoryRepository.save(category);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
+
                 .body(savedCategory);
     }
-
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
